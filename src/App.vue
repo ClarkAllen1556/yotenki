@@ -1,13 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <b-container fluid>
+    <Navbar @EMIT_SEARCH="storeUserQuery"/>
+    <b-row>
+      <router-view />
+    </b-row>
+    </b-container>
   </div>
 </template>
 
+<script>
+import Navbar from "@/components/Navbar.vue"
+
+export default {
+  name: "App",
+  components: {
+    Navbar
+  },
+  methods: {
+    storeUserQuery: function (params) {
+
+
+    }
+  }
+}
+</script>
 <style lang="scss">
 
 </style>
