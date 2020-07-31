@@ -1,19 +1,17 @@
 <template>
-  <b-col fluid>
-    <div style="height: 350px;">
-      <l-map
-        style="height: 80%; width: 100%"
-        :zoom="zoom"
-        :center="center"
-        @update:zoom="zoomUpdated"
-        @update:center="centerUpdated"
-        @update:bounds="boundsUpdated"
-      >
-        <l-tile-layer :url="map"></l-tile-layer>
-        <l-tile-layer :url="weatherMap"></l-tile-layer>
-      </l-map>
-    </div>
-  </b-col>
+  <div id="w-map" style="height: 20em;">
+    <l-map
+      style="height: 100%; width: 100%"
+      :zoom="zoom"
+      :center="center"
+      @update:zoom="zoomUpdated"
+      @update:center="centerUpdated"
+      @update:bounds="boundsUpdated"
+    >
+      <l-tile-layer :url="map"></l-tile-layer>
+      <l-tile-layer :url="weatherMap"></l-tile-layer>
+    </l-map>
+  </div>
 </template>
 
 <script>
@@ -21,6 +19,7 @@
   import { LMap, LTileLayer } from "vue2-leaflet";
 
   export default {
+    name: "WMap",
     components: {
       LMap,
       LTileLayer,

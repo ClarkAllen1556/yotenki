@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-row>
+      <b-col fluid>[city.info]</b-col>
+    </b-row>
+    <b-row>
+      <b-col>[weather.cards]</b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-card>
+          <WMap />
+        </b-card>
+      </b-col>
+      <b-col>
+        <b-card>
+          [free.space]
+        </b-card>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  import WMap from "@/components/WMap.vue";
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  export default {
+    name: "Home",
+    components: {
+      WMap,
+    },
+  };
 </script>

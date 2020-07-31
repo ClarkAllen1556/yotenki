@@ -3,6 +3,18 @@
 
 @import url('https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap&subset=latin-ext');
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+.card-body {
+  padding: 0em;
+}
+
 #app {
   font-family: 'Zilla Slab', serif;
   font-size: 1em;

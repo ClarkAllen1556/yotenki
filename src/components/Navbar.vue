@@ -31,7 +31,15 @@
     },
     methods: {
       emitSearchButton: function () {
-        this.$emit('EMIT_SEARCH', this.postalCode)
+        try {
+          if (this.postalCode.length < 7)
+            throw new Error(`Postal code is invalid: ${this.postalCode}`)
+
+          this.$emit('EMIT_SEARCH', this.postalCode)
+        } catch (e) {
+          alert(e)
+          this.$log.error(e)
+        }
       }
     }
   };
