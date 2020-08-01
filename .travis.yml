@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+ - "node"
+
+cache: npm
+
+script: npm run build
+
+# deploy:
+#  provider: pages
+#  skip_cleanup: true
+#  github_token: $GITHUB_TOKEN
+#  local_dir: dist
+#  on:
+#    branch: master
+deploy:
+  provider: surge
+  login: allenclark@u.boisestate.edu
+  token: $SURGE_TOKEN
+  project: ./dist
+  domain: yotenki.surge.com
+  on:
+    branch: master
+  edge: true # opt in to dpl v2
