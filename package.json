@@ -1,5 +1,12 @@
 {
-  "name": "corekara",
+  "name": "yo-tenki",
+  "author": {
+    "name": "Allen Clark",
+    "email": "allenclark@u.boisestate.edu",
+    "url": "http://theallenc.com"
+  },
+  "homepage": "https://github.com/ClarkAllen1556/corekara",
+  "description": "Programminng assesment for Corekara.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
