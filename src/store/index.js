@@ -99,6 +99,8 @@ export default new Vuex.Store({
         return resp.data
       }).catch(e => {
         Vue.$log.error(`Fetch weather data failed ${e}`)
+        alert(`Failed to fetch weather data; please check the entered postal code.\n${e}`)
+        return e
       })
     },
     fetchForecastWeatherData: function ({ state }) {
@@ -107,6 +109,8 @@ export default new Vuex.Store({
         return resp.data
       }).catch(e => {
         Vue.$log.error(`Fetch forecast data failed ${e}`)
+        alert(`Failed to fetch forecast data; please check the entered postal code.\n${e}`)
+        return e
       })
     }
   },

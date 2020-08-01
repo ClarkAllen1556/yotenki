@@ -14,6 +14,7 @@ const nAPI = {
       return resp.articles
     }).catch( e => {
       Vue.$log.error(`Fetch news data failed ${e}`)
+      alert(`Failed to fetch news data.\n${e}`)
       return e
     })
   },
