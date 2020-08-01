@@ -11,11 +11,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     rawCode: 0,
-    locationData: {},
+    locationData: {
+      prefecture: null,
+      city: null,
+      area: null
+    },
     forecastDump: [],
     weatherDataMeta: {
       name: "",
-      coord: { lat: 0, lon: 0}
+      coord: { lat: 0, lon: 0 }
     },
     newsDump: [],
     weatherDataDump: {}
@@ -69,21 +73,25 @@ export default new Vuex.Store({
     },
     updateLocationData: function ({ state }) {
       const pCodeAPI = require('japan-postal-code');
-      let locationData = {}
+      let fill = {
+        prefecture: null,
+        city: null,
+        area: null
+      }
 
       pCodeAPI.get(state.rawCode.replace('-', ''), function (address) {
-        locationData.prefecture = address.prefecture
-        locationData.city = address.city
-        locationData.area = address.area
+        fill.prefecture = address.prefecture
+        fill.city = address.city
+        fill.area = address.area
       })
 
-      return locationData
+      return fill
     },
     updateWeatherMeta: function ({ commit, state }) {
       commit('updateWeatherMeta', state.weatherDataDump)
     },
     fetchNewsArticleData: function ({ state }) {
-      return nAPI.fetchNewsFormated(state.rawCode.slice('-')[0])
+      return nAPI.fetchNewsFormated(state.locationData.area)
     },
     fetchCurrentWeatherData: function ({ state }) {
       return axios.get(apiConfig.wCurrentData({ zip: state.rawCode, region: "jp" })).then(resp => {
@@ -123,6 +131,13 @@ export default new Vuex.Store({
     },
     getMapBase: function (state) {
       return apiConfig.map({ z: 1, x: state.weatherDataMeta.coord.lat, y: state.weatherDataMeta.coord.lon })
+    },
+    getLocationData: function (state) {
+      return {
+        prefecture: state.locationData.prefecture,
+        city: state.locationData.city,
+        area: state.locationData.area
+      }
     }
   }
 })
