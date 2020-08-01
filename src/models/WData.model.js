@@ -1,7 +1,7 @@
 
 export default class WData {
   constructor(data) {
-    console.log(data)
+    this.date = data.dt_txt
     this.temp = data.main.temp
     this.feels_like = data.main.feels_like
     this.temp_min = data.main.temp_min
