@@ -13,17 +13,7 @@ export default new Vuex.Store({
     forecastDump: [],
     weatherDataMeta: {
       name: "",
-      coord: {
-        lon: 0,
-        lat: 0
-      },
-      weather: {
-        desc: "",
-        temp: 0,
-        temp_min: 0,
-        temp_max: 0,
-        humidity: 0
-      },
+      coord: { lat: 0, lon: 0}
     },
     weatherDataDump: {}
   },
@@ -36,14 +26,24 @@ export default new Vuex.Store({
       state.weatherDataDump = weatherData
       Vue.$log.debug(`Weather dump updated`)
     },
-    updateDataMeta: function (state, metaData) {
-      state.weatherDataMeta = metaData
+    updateDataMeta: function (state) {
+      state.weatherDataMeta = new WData(state.weatherDataDump)
+      state.weatherDataMeta.name = state.weatherDataDump.name
+      state.weatherDataMeta.coord = state.weatherDataDump.coord
+
       Vue.$log.debug(`Weather data updated`)
     },
     updateForecastDump: function (state, forecastData) {
-      console.log(forecastData)
-      for(let i = 0; i < 3; i++)
-        state.forecastDump.push(new WData(forecastData.data.list[i]))
+      state.forecastDump = []
+
+      /**
+       * The open weather API gives its 5-day forecast in three
+       * hour increments. I don't want to have to manage 40 3-hour
+       * segments of weather data so I'm only storing the data
+       * that aligns with 12pm on every day.
+       */
+      for (let i = 2; i < forecastData.list.length; i += 8)
+        state.forecastDump.push(new WData(forecastData.list[i]))
 
       Vue.$log.debug(`Forecast dump updated`)
     }
@@ -51,25 +51,17 @@ export default new Vuex.Store({
   actions: {
     updateCode: async function ({ commit, state }, postalCode) {
       commit('updateCode', postalCode)
-
       commit('updateWeatherDump', await this.dispatch('fetchCurrentWeatherData'))
+      commit('updateDataMeta')
       commit('updateForecastDump', await this.dispatch('fetchForecastWeatherData'))
     },
     updateDataMeta: function ({ commit, state }) {
-      const data = {
-        name: state.weatherDataDump.name,
-        coord: state.weatherDataDump.coord,
-        weather: state.weatherDataDump.weather[0],
-        main: state.weatherDataDump.main,
-        icon: state.weatherDataDump.weather[0].icon
-      }
-
-      commit('updateDataMeta', data)
+      commit('updateDataMeta', state.weatherDataDump)
     },
     fetchCurrentWeatherData: function ({ state }) {
       return axios.get(apiConfig.wCurrentData({ zip: state.queriedCode, region: "jp" })).then(resp => {
         Vue.$log.debug(`Fetch weather data succeeded`)
-        return resp
+        return resp.data
       }).catch(e => {
         Vue.$log.error(`Fetch weather data failed ${e}`)
       })
@@ -77,7 +69,7 @@ export default new Vuex.Store({
     fetchForecastWeatherData: function ({ state }) {
       return axios.get(apiConfig.wForecastData({ zip: state.queriedCode, region: "jp" })).then(resp => {
         Vue.$log.debug(`Fetch forecast data succeeded`)
-        return resp
+        return resp.data
       }).catch(e => {
         Vue.$log.error(`Fetch forecast data failed ${e}`)
       })
@@ -92,6 +84,18 @@ export default new Vuex.Store({
     },
     getWeatherDataDump: function (state) {
       return state.weatherDataDump
+    },
+    getCoordLat: function (state) {
+      return state.weatherDataMeta.coord.lat
+    },
+    getCoordLon: function (state) {
+      return state.weatherDataMeta.coord.lon
+    },
+    getMapWeather: function (state) {
+      return apiConfig.wMap({ z: 1, x: state.weatherDataMeta.coord.lat, y: state.weatherDataMeta.coord.lon })
+    },
+    getMapBase: function (state) {
+      return apiConfig.map({ z: 1, x: state.weatherDataMeta.coord.lat, y: state.weatherDataMeta.coord.lon })
     }
   }
 })
