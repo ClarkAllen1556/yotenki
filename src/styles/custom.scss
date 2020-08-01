@@ -1,3 +1,5 @@
+$shadow: #839496;
+
 @import '~bootstrap';
 @import '~bootstrap-vue';
 
@@ -20,7 +22,7 @@ body {
   font-size: 1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
 }
 

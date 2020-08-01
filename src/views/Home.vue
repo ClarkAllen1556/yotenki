@@ -1,37 +1,45 @@
 <template>
   <div class="home">
     <b-row>
-      <b-col fluid> Weather forcast for: </b-col>
-    </b-row>
-    <b-row>
-      <b-col fluid> <LocationInfo :locationData="updateLocationData" /> </b-col>
-    </b-row>
-    <b-row>
-      <b-col>[weather.cards]</b-col>
+      <b-col id="loc-el" fluid>
+        Weather forcast for:
+        <LocationInfo :locationData="updateLocationData" />
+      </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-card>
-          <WMap :wMap="mapWeather()" :bMap="mapBase()" />
+        <Forecast :forecastData="updateForecastData"/>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="secondary-content">
+        <b-card class="content-card">
+          <WMap :coords="updateCoords" />
         </b-card>
       </b-col>
-      <b-col>
-        <b-card>[free.space]</b-card>
+      <b-col class="secondary-content">
+        <b-card class="content-card">
+          <News :articleList="updateArts" />
+        </b-card>
       </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
-  import WMap from "@/components/WMap.vue";
-  import apiConfig from "../../api.config";
+  import WMap from "@/components/WMap.vue"
+  import News from "@/components/News.vue"
+  import Forecast from "@/components/Forecast.vue"
+  import apiConfig from "../../api.config"
   import LocationInfo from "@/components/LocationInfo.vue"
 
   export default {
     name: "Home",
     components: {
       WMap,
-      LocationInfo
+      News,
+      Forecast,
+      LocationInfo,
     },
     methods: {
       mapWeather: function () {
@@ -44,7 +52,27 @@
     computed: {
       updateLocationData: function () {
         return this.$store.getters.getLocationData
+      },
+      updateCoords: function () {
+        return this.$store.getters.getCoords
+      },
+      updateArts: function () {
+        return this.$store.getters.getNewsArticles
+      },
+      updateForecastData: function () {
+        return this.$store.getters.getForecastData
       }
-    }
+    },
   };
 </script>
+
+<style lang="scss" scoped>
+  @import "../styles/custom.scss";
+
+  .secondary-content {
+    min-height: 25em;
+  }
+  .content-card {
+    box-shadow: 5px 5px 5px $shadow;
+  }
+</style>

@@ -1,14 +1,13 @@
 <template>
-  <div id="w-map" style="height: 20em;">
-    <l-map
-      style="height: 100%; width: 100%"
+  <div id="w-el">
+    <l-map id="map"
       :zoom="zoom"
       :center="center"
       @update:zoom="zoomUpdated"
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
-      <l-tile-layer :url="map"></l-tile-layer>
+      <l-tile-layer :url="map" :center="changeCoords"></l-tile-layer>
       <l-tile-layer :url="weatherMap"></l-tile-layer>
     </l-map>
   </div>
@@ -24,6 +23,9 @@
       LMap,
       LTileLayer,
     },
+    props: {
+      coords: Array
+    },
     data() {
       return {
         map: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -31,7 +33,7 @@
         weatherMap:
           "https://tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=a243fbc125c986c3dd41cc3ae886796d",
         zoom: 10,
-        center: [35.75, 139.69],
+        center: [35,139],
         bounds: null,
       };
     },
@@ -46,10 +48,21 @@
         this.bounds = bounds;
       }
     },
-    watch: {
+    computed: {
       changeCoords: function() {
-        this.center[this.$store.getCoordLon, this.$store.getCoordLon]
+        this.center = this.$props.coords
+        return this.center
       }
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  #w-el {
+    height: 25em;
+  }
+  #map {
+    height: 100%;
+    width: 100%;
+  }
+</style>

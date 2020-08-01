@@ -19,7 +19,7 @@ export default new Vuex.Store({
     forecastDump: [],
     weatherDataMeta: {
       name: "",
-      coord: { lat: 0, lon: 0 }
+      coord: { lat: 35, lon: 139 }
     },
     newsDump: [],
     weatherDataDump: {}
@@ -120,11 +120,8 @@ export default new Vuex.Store({
     getWeatherDataDump: function (state) {
       return state.weatherDataDump
     },
-    getCoordLat: function (state) {
-      return state.weatherDataMeta.coord.lat
-    },
-    getCoordLon: function (state) {
-      return state.weatherDataMeta.coord.lon
+    getCoords: function (state) {
+      return [state.weatherDataMeta.coord.lat, state.weatherDataMeta.coord.lon]
     },
     getMapWeather: function (state) {
       return apiConfig.wMap({ z: 1, x: state.weatherDataMeta.coord.lat, y: state.weatherDataMeta.coord.lon })
@@ -138,6 +135,12 @@ export default new Vuex.Store({
         city: state.locationData.city,
         area: state.locationData.area
       }
+    },
+    getNewsArticles: function (state) {
+      return state.newsDump
+    },
+    getForecastData: function (state) {
+      return state.forecastDump
     }
   }
 })
