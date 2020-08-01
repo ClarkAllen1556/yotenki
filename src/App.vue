@@ -25,7 +25,7 @@
     },
     methods: {
       storeUserQuery: function (params) {
-        this.$store.dispatch("updateCode", params);
+        this.$store.dispatch("updateMetaData", params);
       },
     },
   };

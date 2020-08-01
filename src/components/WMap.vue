@@ -8,8 +8,8 @@
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
-      <l-tile-layer :url="`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`"></l-tile-layer>
-      <l-tile-layer :url="`https://tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=a243fbc125c986c3dd41cc3ae886796d`"></l-tile-layer>
+      <l-tile-layer :url="map"></l-tile-layer>
+      <l-tile-layer :url="weatherMap"></l-tile-layer>
     </l-map>
   </div>
 </template>
@@ -30,8 +30,6 @@
         wData: {},
         weatherMap:
           "https://tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=a243fbc125c986c3dd41cc3ae886796d",
-        weatherAPI:
-          "http://api.openweathermap.org/data/2.5/weather?zip=174-0073,jp&appid=a243fbc125c986c3dd41cc3ae886796d",
         zoom: 10,
         center: [35.75, 139.69],
         bounds: null,
@@ -46,17 +44,12 @@
       },
       boundsUpdated(bounds) {
         this.bounds = bounds;
-      },
-      printWeather: function () {
-        // return this.wData.weather[0].description
-      },
+      }
     },
     watch: {
       changeCoords: function() {
         this.center[this.$store.getCoordLon, this.$store.getCoordLon]
       }
-    },
-    mounted() {
-    },
+    }
   };
 </script>
