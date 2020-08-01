@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+import nAPI from "../api/News.api"
 import apiConfig from "../../api.config"
 import WData from "../models/WData.model"
 
@@ -10,11 +11,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     queriedCode: 0,
+    postalCode: "0000000",
     forecastDump: [],
     weatherDataMeta: {
       name: "",
       coord: { lat: 0, lon: 0}
     },
+    newsDump: [],
     weatherDataDump: {}
   },
   mutations: {
@@ -32,6 +35,9 @@ export default new Vuex.Store({
       state.weatherDataMeta.coord = state.weatherDataDump.coord
 
       Vue.$log.debug(`Weather data updated`)
+    },
+    updateNewsArticleDump: function (state, newsArticleList) {
+      state.newsDump = newsArticleList
     },
     updateForecastDump: function (state, forecastData) {
       state.forecastDump = []
@@ -54,9 +60,13 @@ export default new Vuex.Store({
       commit('updateWeatherDump', await this.dispatch('fetchCurrentWeatherData'))
       commit('updateDataMeta')
       commit('updateForecastDump', await this.dispatch('fetchForecastWeatherData'))
+      commit('updateNewsArticleDump', await this.dispatch('fetchNewsArticleData'))
     },
     updateDataMeta: function ({ commit, state }) {
       commit('updateDataMeta', state.weatherDataDump)
+    },
+    fetchNewsArticleData: function ({ state }) {
+      return nAPI.fetchNewsFormated(state.queriedCode.slice('-')[0])
     },
     fetchCurrentWeatherData: function ({ state }) {
       return axios.get(apiConfig.wCurrentData({ zip: state.queriedCode, region: "jp" })).then(resp => {
