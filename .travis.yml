@@ -10,7 +10,7 @@ deploy:
   provider: surge
   login: allenclark@u.boisestate.edu
   project: ./dist
-  domain: yotenki.surge.com
+  domain: yotenki.surge.sh
   on:
     branch: master
   edge: true # opt in to dpl v2
