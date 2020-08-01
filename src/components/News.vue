@@ -1,11 +1,17 @@
 <template>
   <div id="news">
-    <b-card-header>{{ newsArticles.length }}: news articles found...</b-card-header>
-    <div v-if="updateNewsArticles.length === 0">
-      <template>
-        <h4 style="text-align: center;">If there is news happening in the searched location you can read it here.</h4>
+    <b-card-header style="padding: 1em;">
+      <b-icon-newspaper />
+      {{ newsArticles.length }}: news articles found...
+      </b-card-header>
+    <b-row v-if="updateNewsArticles.length === 0" no-gutters>
+      <b-col class="text-center">
+        <template>
+        <h4>If there is news happening in the searched location you can read it here.</h4>
+        <img :src="require('../assets/logo-sun.png')" style="height: 10em; width: 10em;"/>
       </template>
-    </div>
+      </b-col>
+    </b-row>
     <div
       v-else
       v-for="(art, i) in updateNewsArticles"

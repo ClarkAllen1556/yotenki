@@ -1,21 +1,25 @@
 <template>
   <div id="fore-el">
-    <b-card-group deck>
-        <b-card
-          class="w-card"
-          v-for="(data, i) of updateForecast" :key="i"
-          :title="data.date"
-          :img-src="`http://openweathermap.org/img/wn/${data.icon}@2x.png`"
-          :img-alt="data.icon"
-          img-top
+    <b-row>
+      <b-col>
+        <b-card-group deck>
+          <b-card
+            class="w-card"
+            v-for="(data, i) of updateForecast"
+            :key="i"
+            :title="data.date"
+            :img-src="`http://openweathermap.org/img/wn/${data.icon}@2x.png`"
+            :img-alt="data.icon"
+            img-top
           >
-        <b-card-text>
-          <h2> {{ data.description }} </h2>
-          <strong> Min: {{ data.temp_min }} Max: {{ data.temp_max }} </strong>
-        </b-card-text>
-      </b-card>
-
-    </b-card-group>
+            <b-card-text>
+              <h2>{{ data.description }}</h2>
+              <strong>Min: {{ data.temp_min }} Max: {{ data.temp_max }}</strong>
+            </b-card-text>
+          </b-card>
+        </b-card-group>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
