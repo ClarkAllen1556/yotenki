@@ -10,8 +10,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    queriedCode: 0,
-    postalCode: "0000000",
+    rawCode: 0,
+    locationData: {},
     forecastDump: [],
     weatherDataMeta: {
       name: "",
@@ -21,15 +21,19 @@ export default new Vuex.Store({
     weatherDataDump: {}
   },
   mutations: {
-    updateCode: function (state, postalCode) {
-      state.queriedCode = postalCode
-      Vue.$log.debug(`Update postal code ${state.queriedCode}`)
+    updateRawCode: function (state, postalCode) {
+      state.rawCode = postalCode
+      Vue.$log.debug(`Update postal code`)
+    },
+    updateLocationData: function (state, locationData) {
+      state.locationData = locationData
+      Vue.$log.debug(`Update location data`)
     },
     updateWeatherDump: function (state, weatherData) {
       state.weatherDataDump = weatherData
       Vue.$log.debug(`Weather dump updated`)
     },
-    updateDataMeta: function (state) {
+    updateWeatherMeta: function (state) {
       state.weatherDataMeta = new WData(state.weatherDataDump)
       state.weatherDataMeta.name = state.weatherDataDump.name
       state.weatherDataMeta.coord = state.weatherDataDump.coord
@@ -55,21 +59,34 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    updateCode: async function ({ commit, state }, postalCode) {
-      commit('updateCode', postalCode)
+    updateMetaData: async function ({ commit, state }, postalCode) {
+      commit('updateRawCode', postalCode)
+      commit('updateLocationData', await this.dispatch('updateLocationData'))
       commit('updateWeatherDump', await this.dispatch('fetchCurrentWeatherData'))
-      commit('updateDataMeta')
+      commit('updateWeatherMeta')
       commit('updateForecastDump', await this.dispatch('fetchForecastWeatherData'))
       commit('updateNewsArticleDump', await this.dispatch('fetchNewsArticleData'))
     },
-    updateDataMeta: function ({ commit, state }) {
-      commit('updateDataMeta', state.weatherDataDump)
+    updateLocationData: function ({ state }) {
+      const pCodeAPI = require('japan-postal-code');
+      let locationData = {}
+
+      pCodeAPI.get(state.rawCode.replace('-', ''), function (address) {
+        locationData.prefecture = address.prefecture
+        locationData.city = address.city
+        locationData.area = address.area
+      })
+
+      return locationData
+    },
+    updateWeatherMeta: function ({ commit, state }) {
+      commit('updateWeatherMeta', state.weatherDataDump)
     },
     fetchNewsArticleData: function ({ state }) {
-      return nAPI.fetchNewsFormated(state.queriedCode.slice('-')[0])
+      return nAPI.fetchNewsFormated(state.rawCode.slice('-')[0])
     },
     fetchCurrentWeatherData: function ({ state }) {
-      return axios.get(apiConfig.wCurrentData({ zip: state.queriedCode, region: "jp" })).then(resp => {
+      return axios.get(apiConfig.wCurrentData({ zip: state.rawCode, region: "jp" })).then(resp => {
         Vue.$log.debug(`Fetch weather data succeeded`)
         return resp.data
       }).catch(e => {
@@ -77,7 +94,7 @@ export default new Vuex.Store({
       })
     },
     fetchForecastWeatherData: function ({ state }) {
-      return axios.get(apiConfig.wForecastData({ zip: state.queriedCode, region: "jp" })).then(resp => {
+      return axios.get(apiConfig.wForecastData({ zip: state.rawCode, region: "jp" })).then(resp => {
         Vue.$log.debug(`Fetch forecast data succeeded`)
         return resp.data
       }).catch(e => {
@@ -87,7 +104,7 @@ export default new Vuex.Store({
   },
   getters: {
     getPostalCode: function (state) {
-      return state.queriedCode
+      return state.rawCode
     },
     getWeatherDataMeta: function (state) {
       return state.weatherDataMeta
