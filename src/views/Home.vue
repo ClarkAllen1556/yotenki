@@ -8,30 +8,31 @@
     </b-row>
     <b-row id="forecast-row">
       <b-col>
-        <Forecast :forecastData="updateForecastData"/>
+        <Forecast :forecastData="updateForecastData" />
       </b-col>
     </b-row>
     <b-row id="content">
-      <b-col class="secondary-content">
-        <b-card class="content-card">
-          <WMap :coords="updateCoords" />
-        </b-card>
-      </b-col>
-      <b-col class="secondary-content">
-        <b-card class="content-card overflow-auto">
-          <News :articleList="updateArts" />
-        </b-card>
+      <b-col fluid>
+        <b-card-group deck>
+          <b-card class="content-card">
+            <WMap :coords="updateCoords" />
+          </b-card>
+
+          <b-card class="content-card overflow-auto">
+            <News :articleList="updateArts" />
+          </b-card>
+        </b-card-group>
       </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
-  import WMap from "@/components/WMap.vue"
-  import News from "@/components/News.vue"
-  import Forecast from "@/components/Forecast.vue"
-  import apiConfig from "../../api.config"
-  import LocationInfo from "@/components/LocationInfo.vue"
+  import WMap from "@/components/WMap.vue";
+  import News from "@/components/News.vue";
+  import Forecast from "@/components/Forecast.vue";
+  import apiConfig from "../../api.config";
+  import LocationInfo from "@/components/LocationInfo.vue";
 
   export default {
     name: "Home",
@@ -43,25 +44,25 @@
     },
     methods: {
       mapWeather: function () {
-        return this.$store.getters.getMapWeather
+        return this.$store.getters.getMapWeather;
       },
       mapBase: function () {
-        return this.$store.getters.getMapBase
+        return this.$store.getters.getMapBase;
       },
     },
     computed: {
       updateLocationData: function () {
-        return this.$store.getters.getLocationData
+        return this.$store.getters.getLocationData;
       },
       updateCoords: function () {
-        return this.$store.getters.getCoords
+        return this.$store.getters.getCoords;
       },
       updateArts: function () {
-        return this.$store.getters.getNewsArticles
+        return this.$store.getters.getNewsArticles;
       },
       updateForecastData: function () {
-        return this.$store.getters.getForecastData
-      }
+        return this.$store.getters.getForecastData;
+      },
     },
   };
 </script>
