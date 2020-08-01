@@ -1,18 +1,16 @@
 <template>
-  <div id="app">
-    <b-container fluid="sm">
-      <b-row>
-        <b-col xl="auto">
-          <Navbar @EMIT_SEARCH="storeUserQuery" />
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <router-view />
-        </b-col>
-      </b-row>
-    </b-container>
-  </div>
+  <b-container id="app" fluid>
+    <b-row>
+      <b-col>
+        <Navbar @EMIT_SEARCH="storeUserQuery" />
+      </b-col>
+    </b-row>
+    <b-row style="padding: 1em;">
+      <b-col>
+        <router-view />
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -30,5 +28,3 @@
     },
   };
 </script>
-<style lang="scss">
-</style>

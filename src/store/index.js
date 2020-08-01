@@ -91,7 +91,7 @@ export default new Vuex.Store({
       commit('updateWeatherMeta', state.weatherDataDump)
     },
     fetchNewsArticleData: function ({ state }) {
-      return nAPI.fetchNewsFormated(state.locationData.area)
+      return nAPI.fetchNewsFormated(state.locationData.prefecture)
     },
     fetchCurrentWeatherData: function ({ state }) {
       return axios.get(apiConfig.wCurrentData({ zip: state.rawCode, region: "jp" })).then(resp => {

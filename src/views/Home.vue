@@ -11,7 +11,7 @@
         <Forecast :forecastData="updateForecastData"/>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row id="content">
       <b-col class="secondary-content">
         <b-card class="content-card">
           <WMap :coords="updateCoords" />

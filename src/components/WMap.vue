@@ -34,7 +34,7 @@
         map: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         wData: {},
         weatherMap:
-          "https://tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=a243fbc125c986c3dd41cc3ae886796d",
+          "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=a243fbc125c986c3dd41cc3ae886796d",
         zoom: 10,
         center: [35,139],
         bounds: null,
