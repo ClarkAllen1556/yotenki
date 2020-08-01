@@ -6,9 +6,8 @@
           v-for="(data, i) of updateForecast" :key="i"
           :title="data.date"
           :img-src="`http://openweathermap.org/img/wn/${data.icon}@2x.png`"
-          img-alt="Image"
+          :img-alt="data.icon"
           img-top
-          style="text-align: center"
           >
         <b-card-text>
           <h2> {{ data.description }} </h2>
@@ -40,8 +39,19 @@
   };
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .card-img-top {
+    max-height: 50%;
+    max-width: 50%;
+    align-self: center;
+  }
+
+  #fore-el {
+    height: 100%;
+  }
+
   .w-card {
-    height: 10em;
+    min-height: inherit;
+    text-align: center;
   }
 </style>

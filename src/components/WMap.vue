@@ -7,7 +7,9 @@
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
+
       <l-tile-layer :url="map" :center="changeCoords"></l-tile-layer>
+      <l-marker :lat-lng="center" ></l-marker>
       <l-tile-layer :url="weatherMap"></l-tile-layer>
     </l-map>
   </div>
@@ -15,13 +17,14 @@
 
 <script>
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer } from "vue2-leaflet";
+  import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
   export default {
     name: "WMap",
     components: {
       LMap,
       LTileLayer,
+      LMarker
     },
     props: {
       coords: Array

@@ -2,11 +2,11 @@
   <div class="home">
     <b-row>
       <b-col id="loc-el" fluid>
-        Weather forcast for:
+        Three-day weather forcast for:
         <LocationInfo :locationData="updateLocationData" />
       </b-col>
     </b-row>
-    <b-row>
+    <b-row id="forecast-row">
       <b-col>
         <Forecast :forecastData="updateForecastData"/>
       </b-col>
@@ -18,7 +18,7 @@
         </b-card>
       </b-col>
       <b-col class="secondary-content">
-        <b-card class="content-card">
+        <b-card class="content-card overflow-auto">
           <News :articleList="updateArts" />
         </b-card>
       </b-col>
@@ -69,10 +69,12 @@
 <style lang="scss" scoped>
   @import "../styles/custom.scss";
 
+  #forecast-row {
+    min-height: 15em;
+    margin-bottom: 1em;
+  }
+
   .secondary-content {
     min-height: 25em;
-  }
-  .content-card {
-    box-shadow: 5px 5px 5px $shadow;
   }
 </style>

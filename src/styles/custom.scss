@@ -17,6 +17,10 @@ body {
   padding: 0em;
 }
 
+.card {
+  box-shadow: 5px 5px 5px $shadow;
+}
+
 #app {
   font-family: 'Zilla Slab', serif;
   font-size: 1em;

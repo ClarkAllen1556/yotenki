@@ -7,6 +7,18 @@ import VueLogger from 'vuejs-logger'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import './styles/custom.scss'
 
+/**
+ * For map icons
+ */
+import { Icon } from 'leaflet';
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
+
+
 const isProduction = process.env.NODE_ENV === 'production';
 const options = {
   isEnabled: true,

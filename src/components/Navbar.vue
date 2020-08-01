@@ -4,17 +4,13 @@
       <b-navbar-brand>Yo. Tenki</b-navbar-brand>
       <b-navbar-nav>
         <b-input-group prepend="Postal Code">
-          <b-form-input
-            v-model="postalCode"
-            id="postal-input"
-            placeholder="Enter a postal code"
-
-          />
+          <b-form-input v-model="postalCode" id="postal-input" placeholder="Enter a postal code" v-b-tooltip.hover title="0000-0000"/>
 
           <b-input-group-append>
-            <b-button variant="primary" type="submit" @click="emitSearchButton">Find weather</b-button>
+            <b-button variant="primary" type="submit" @click="emitSearchButton" v-b-tooltip.hover title="Find weather">
+              <b-icon-search />
+            </b-button>
           </b-input-group-append>
-
         </b-input-group>
       </b-navbar-nav>
     </b-nav>
@@ -26,22 +22,22 @@
     name: "Navbar",
     data() {
       return {
-        postalCode: ""
-      }
+        postalCode: "",
+      };
     },
     methods: {
       emitSearchButton: function () {
         try {
           if (this.postalCode.length < 7)
-            throw new Error(`Postal code is invalid: ${this.postalCode}`)
+            throw new Error(`Postal code is invalid: ${this.postalCode}`);
 
-          this.$emit('EMIT_SEARCH', this.postalCode)
+          this.$emit("EMIT_SEARCH", this.postalCode);
         } catch (e) {
-          alert(e)
-          this.$log.error(e)
+          alert(e);
+          this.$log.error(e);
         }
-      }
-    }
+      },
+    },
   };
 </script>
 
