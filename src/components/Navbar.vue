@@ -1,15 +1,21 @@
 <template>
   <div id="nav">
     <b-navbar class="rounded-bottom navi">
-      <b-navbar-brand >
-        <b-img id="logo" class="d-inline-block align-middle" rounded :src="require('../assets/logo.png')" alt="Yo. Tenki"/>
+      <b-navbar-brand>
+        <b-img
+          id="logo"
+          class="d-inline-block align-middle"
+          rounded
+          :src="require('../assets/logo.png')"
+          alt="Yo. Tenki"
+        />
       </b-navbar-brand>
       <b-navbar-nav>
-        <b-input-group prepend="Postal Code">
+        <b-input-group :prepend="$t('forms.postalCodeLabel')">
           <b-form-input
             v-model="postalCode"
             id="postal-input"
-            placeholder="Enter a postal code"
+            :placeholder="$t('forms.postalCodeInput')"
             v-b-tooltip.hover
             title="0000-0000"
           />
@@ -20,7 +26,7 @@
               type="submit"
               @click="emitSearchButton"
               v-b-tooltip.hover
-              title="Find weather"
+              :title="$t('forms.searchButtonToolTip')"
             >
               <b-icon-search />
             </b-button>
@@ -45,6 +51,9 @@
           if (this.postalCode.length < 7)
             throw new Error(`Postal code is invalid: ${this.postalCode}`);
 
+          if (!this.postalCode.includes("-"))
+            this.postalCode = this.postalCode.slice(0, 3) + "-" + this.postalCode.slice(3, 7)
+
           this.$emit("EMIT_SEARCH", this.postalCode);
         } catch (e) {
           alert(e);
@@ -56,12 +65,12 @@
 </script>
 
 <style lang="scss" scoped>
-#logo {
-  height: 3em;
-  width: 3em;
-}
+  #logo {
+    height: 3em;
+    width: 3em;
+  }
 
-.navi {
-  // margin-bottom: 1em;
-}
+  .navi {
+    // margin-bottom: 1em;
+  }
 </style>

@@ -2,12 +2,12 @@
   <div id="news">
     <b-card-header style="padding: 1em;">
       <b-icon-newspaper />
-      {{ newsArticles.length }}: news articles found...
+      {{ newsArticles.length + $t('labels.newsCount') }}
       </b-card-header>
     <b-row v-if="updateNewsArticles.length === 0" no-gutters>
       <b-col class="text-center">
         <template>
-        <h4>If there is news happening in the searched location you can read it here.</h4>
+        <h4>{{ $t('labels.newsContainerBlank')}}</h4>
         <img :src="require('../assets/logo-sun.png')" style="height: 10em; width: 10em;"/>
       </template>
       </b-col>

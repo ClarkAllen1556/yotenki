@@ -2,7 +2,7 @@
   <div class="home">
     <b-row>
       <b-col id="loc-el" fluid>
-        Three-day weather forcast for:
+        {{ $t('labels.weatherForecast') }}
         <LocationInfo :locationData="updateLocationData" />
       </b-col>
     </b-row>
@@ -31,7 +31,6 @@
   import WMap from "@/components/WMap.vue";
   import News from "@/components/News.vue";
   import Forecast from "@/components/Forecast.vue";
-  import apiConfig from "../../api.config";
   import LocationInfo from "@/components/LocationInfo.vue";
 
   export default {
@@ -43,12 +42,6 @@
       LocationInfo,
     },
     methods: {
-      mapWeather: function () {
-        return this.$store.getters.getMapWeather;
-      },
-      mapBase: function () {
-        return this.$store.getters.getMapBase;
-      },
     },
     computed: {
       updateLocationData: function () {
