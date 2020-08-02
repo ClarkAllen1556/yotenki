@@ -5,10 +5,10 @@
     "email": "allenclark@u.boisestate.edu",
     "url": "http://theallenc.com"
   },
-  "homepage": "https://github.com/ClarkAllen1556/corekara",
-  "description": "Programminng assesment for Corekara.",
-  "version": "0.1.0",
-  "private": true,
+  "homepage": "https://github.com/ClarkAllen1556/yotenki",
+  "description": "Programming assessment.",
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
@@ -19,7 +19,6 @@
     "bootstrap-vue": "^2.16.0",
     "core-js": "^3.6.5",
     "japan-postal-code": "^0.2.0",
-    "jquery": "^3.5.1",
     "leaflet": "^1.6.0",
     "moment": "^2.27.0",
     "newsapi": "^2.4.1",
