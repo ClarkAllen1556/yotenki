@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-
+import wAPI from "../api/Weather.api"
 import nAPI from "../api/News.api"
-import apiConfig from "../../api.config"
 import WData from "../models/WData.model"
 
 Vue.use(Vuex)
@@ -22,7 +20,8 @@ export default new Vuex.Store({
       coord: { lat: 35, lon: 139 }
     },
     newsDump: [],
-    weatherDataDump: {}
+    weatherDataDump: {},
+    currentLocale: "EN"
   },
   mutations: {
     updateRawCode: function (state, postalCode) {
@@ -94,24 +93,10 @@ export default new Vuex.Store({
       return nAPI.fetchNewsFormated(state.locationData.prefecture)
     },
     fetchCurrentWeatherData: function ({ state }) {
-      return axios.get(apiConfig.wCurrentData({ zip: state.rawCode, region: "jp" })).then(resp => {
-        Vue.$log.debug(`Fetch weather data succeeded`)
-        return resp.data
-      }).catch(e => {
-        Vue.$log.error(`Fetch weather data failed ${e}`)
-        alert(`Failed to fetch weather data; please check the entered postal code.\n${e}`)
-        return e
-      })
+      return wAPI.fetchCurrentWeatherData(state.rawCode, state.currentLocale)
     },
     fetchForecastWeatherData: function ({ state }) {
-      return axios.get(apiConfig.wForecastData({ zip: state.rawCode, region: "jp" })).then(resp => {
-        Vue.$log.debug(`Fetch forecast data succeeded`)
-        return resp.data
-      }).catch(e => {
-        Vue.$log.error(`Fetch forecast data failed ${e}`)
-        alert(`Failed to fetch forecast data; please check the entered postal code.\n${e}`)
-        return e
-      })
+      return wAPI.fetchForecastWeatherData(state.rawCode, state.currentLocale)
     }
   },
   getters: {
@@ -126,12 +111,6 @@ export default new Vuex.Store({
     },
     getCoords: function (state) {
       return [state.weatherDataMeta.coord.lat, state.weatherDataMeta.coord.lon]
-    },
-    getMapWeather: function (state) {
-      return apiConfig.wMap({ z: 1, x: state.weatherDataMeta.coord.lat, y: state.weatherDataMeta.coord.lon })
-    },
-    getMapBase: function (state) {
-      return apiConfig.map({ z: 1, x: state.weatherDataMeta.coord.lat, y: state.weatherDataMeta.coord.lon })
     },
     getLocationData: function (state) {
       return {

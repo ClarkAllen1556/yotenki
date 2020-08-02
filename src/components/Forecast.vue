@@ -38,7 +38,7 @@
       updateForecast: function () {
         this.forecastList = this.$props.forecastData.slice(0, 3);
         return this.forecastList;
-      },
+      }
     },
   };
 </script>

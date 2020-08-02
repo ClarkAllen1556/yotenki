@@ -2,11 +2,12 @@ import NewsAPI from "newsapi"
 import NData from "../models/NData.model"
 import Vue from 'vue'
 
-const N_KEY = require("../../key.api.json").N_KEY
-const newsapi = new NewsAPI(N_KEY, { corsProxyUrl: 'https://cors-anywhere.herokuapp.com/' }); // https://github.com/bzarras/newsapi/pull/26
+import { N_KEY } from "../../key.api.json"
 
 const nAPI = {
   fetchNews: function (location) {
+    const newsapi = new NewsAPI(N_KEY, { corsProxyUrl: 'https://cors-anywhere.herokuapp.com/' }); // https://github.com/bzarras/newsapi/pull/26
+
     return newsapi.v2.everything({
       qInTitle: `"${location}"`
     }).then( resp => {
