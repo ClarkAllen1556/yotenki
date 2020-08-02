@@ -73,8 +73,7 @@
             throw new Error(`Postal code is invalid: ${this.postalCode}`);
 
           if (!this.postalCode.includes("-"))
-            this.postalCode =
-              this.postalCode.slice(0, 3) + "-" + this.postalCode.slice(3, 7);
+            this.postalCode = this.postalCode.slice(0, 3) + "-" + this.postalCode.slice(3, 7);
 
           this.$emit("EMIT_SEARCH", this.postalCode);
         } catch (e) {

@@ -7,7 +7,7 @@
             {{ $t('labels.about') }}
           </b-card-header>
           <b-card-body>
-            hello there
+            <AboutPage />
           </b-card-body>
         </b-card>
       </b-col>
@@ -16,8 +16,13 @@
 </template>
 
 <script>
+import AboutPage from '../assets/About.md'
+
 export default {
-  name: "About"
+  name: "About",
+  components: {
+    AboutPage
+  }
 }
 </script>
 
