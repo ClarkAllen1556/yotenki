@@ -64,7 +64,7 @@
   @import "../styles/custom.scss";
 
   #forecast-row {
-    min-height: 15em;
+    min-height: 20em;
     margin-bottom: 1em;
   }
 
