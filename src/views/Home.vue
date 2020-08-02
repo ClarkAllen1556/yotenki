@@ -55,7 +55,7 @@
       },
       updateForecastData: function () {
         return this.$store.getters.getForecastData;
-      },
+      }
     },
   };
 </script>

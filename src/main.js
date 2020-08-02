@@ -52,7 +52,7 @@ const TRANSLATIONS = {
 }
 
 const i18n = new VueI18n({
-  locale: 'JP',
+  locale: 'EN',
   messages: TRANSLATIONS
 })
 // --

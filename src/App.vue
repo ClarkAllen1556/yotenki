@@ -2,7 +2,12 @@
   <b-container id="app" fluid>
     <b-row>
       <b-col>
-        <Navbar @EMIT_SEARCH="storeUserQuery" />
+        <Navbar
+          @EMIT_SEARCH="storeUserQuery"
+          @CHANGE_LOCALE="changeLocale"
+          :currentLocal="getCurrentLocale"
+          :localeList="getLocales"
+        />
       </b-col>
     </b-row>
     <b-row style="padding: 1em;">
@@ -25,6 +30,18 @@
       storeUserQuery: function (params) {
         this.$store.dispatch("updateMetaData", params);
       },
+      changeLocale: function (params) {
+        this.$store.dispatch("updateLocale", params);
+        this.$i18n.locale = params
+      }
     },
+    computed: {
+      getCurrentLocale: function () {
+        return this.$store.getters.getCurrentLocale
+      },
+      getLocales: function () {
+        return this.$store.getters.getLocales
+      }
+    }
   };
 </script>
