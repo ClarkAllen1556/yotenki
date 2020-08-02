@@ -5,7 +5,7 @@
         <div v-if="updateForecast.length === 0">
           <template>
             <b-card>
-              <b-card-body style="display: grid; align-content: center;">
+              <b-card-body>
                 <div style="margin: 1em">
                   <h4> {{ $t('labels.searchDescription') }} </h4>
                   <img :src="require('../assets/logo-sun.png')" style="height: 10em; width: 10em;"/>
@@ -54,17 +54,9 @@
 </script>
 
 <style lang="scss" scoped>
-  // .card-img-top {
-  //   max-height: 50%;
-  //   max-width: 50%;
-  //   align-self: center;
-  // }
-
-  #fore-el {
-    height: 100%;
-  }
-
   .card {
+    display: grid;
+    align-content: center;
     min-height: 20em;
     text-align: center;
   }

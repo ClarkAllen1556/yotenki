@@ -21,12 +21,17 @@ export default new Vuex.Store({
     },
     newsDump: [],
     weatherDataDump: {},
-    currentLocale: "EN"
+    currentLocale: "EN",
+    locales: [ "EN", "JP" ]
   },
   mutations: {
     updateRawCode: function (state, postalCode) {
       state.rawCode = postalCode
       Vue.$log.debug(`Update postal code`)
+    },
+    updateLocale: function (state, locale) {
+      state.currentLocale = locale
+      Vue.$log.debug(`Update locale`)
     },
     updateLocationData: function (state, locationData) {
       state.locationData = locationData
@@ -69,6 +74,9 @@ export default new Vuex.Store({
       commit('updateWeatherMeta')
       commit('updateForecastDump', await this.dispatch('fetchForecastWeatherData'))
       commit('updateNewsArticleDump', await this.dispatch('fetchNewsArticleData'))
+    },
+    updateLocale: function ({ commit }, locale) {
+      commit('updateLocale', locale)
     },
     updateLocationData: function ({ state }) {
       const pCodeAPI = require('japan-postal-code');
@@ -124,6 +132,12 @@ export default new Vuex.Store({
     },
     getForecastData: function (state) {
       return state.forecastDump
+    },
+    getLocales: function (state) {
+      return state.locales
+    },
+    getCurrentLocale: function (state) {
+      return state.currentLocale
     }
   }
 })
