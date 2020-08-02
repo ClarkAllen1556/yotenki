@@ -47,5 +47,9 @@ yarn build
 ![logo](./src/assets/promo/radar.png)
 
 ---
+> News feed based on location
+![logo](./src/assets/promo/news.png)
+
+---
 > Accessibility
 ![logo](./src/assets/promo/tooltip.png)
