@@ -22,7 +22,7 @@ export default new Vuex.Store({
     newsDump: [],
     weatherDataDump: {},
     currentLocale: "EN",
-    locales: [ "EN", "JP" ]
+    locales: [ "EN", "JA" ]
   },
   mutations: {
     updateRawCode: function (state, postalCode) {

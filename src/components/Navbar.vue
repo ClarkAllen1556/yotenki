@@ -12,35 +12,41 @@
       </b-navbar-brand>
 
       <b-navbar-nav>
-        <b-input-group :prepend="$t('forms.postalCodeLabel')">
-          <b-form-input
-            v-model="postalCode"
-            id="postal-input"
-            :placeholder="$t('forms.postalCodeInput')"
-            v-b-tooltip.hover
-            title="0000-0000"
-          />
-          <b-input-group-append>
-            <b-button
-              variant="primary"
-              type="submit"
-              @click="emitSearchButton"
+        <b-nav-form>
+          <b-input-group :prepend="$t('forms.postalCodeLabel')">
+            <b-form-input
+              v-model="postalCode"
+              id="postal-input"
+              :placeholder="$t('forms.postalCodeInput')"
               v-b-tooltip.hover
-              :title="$t('forms.searchButtonToolTip')"
-            >
-              <b-icon-search />
-            </b-button>
-          </b-input-group-append>
+              title="0000-0000"
+            />
+            <b-input-group-append>
+              <b-button
+                variant="primary"
+                type="submit"
+                @click="emitSearchButton"
+                v-b-tooltip.hover
+                :title="$t('forms.searchButtonToolTip')"
+              >
+                <b-icon-search />
+              </b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-nav-form>
 
-          <b-nav-dropdown right no-caret>
-            <template v-slot:button-content>{{ getCurrentLocale }}</template>
-            <b-dropdown-item-button
-              v-for="(lang, i) in locales"
-              :key="`Lang${i}`"
-              @click="$emit(`CHANGE_LOCALE`, lang)"
-            >{{ lang }}</b-dropdown-item-button>
-          </b-nav-dropdown>
-        </b-input-group>
+        <b-nav-dropdown left>
+          <template v-slot:button-content>{{ getCurrentLocale }}</template>
+          <b-dropdown-item-button
+            v-for="(lang, i) in locales"
+            :key="`Lang${i}`"
+            @click="$emit(`CHANGE_LOCALE`, lang)"
+          >{{ lang }}</b-dropdown-item-button>
+        </b-nav-dropdown>
+
+        <b-nav-item href="#/about" v-b-tooltip.hover :title="$t('labels.aboutToolTip')"> {{ $t('labels.about') }} </b-nav-item>
+        <b-nav-item href="#/"> <b-icon-house-fill v-b-tooltip.hover :title="$t('labels.homeIcon')" /> </b-nav-item>
+
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -75,7 +81,7 @@
           alert(e);
           this.$log.error(e);
         }
-      }
+      },
     },
     computed: {
       getCurrentLocale: function () {

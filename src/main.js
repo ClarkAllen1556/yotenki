@@ -44,11 +44,11 @@ Vue.use(IconsPlugin)
  * i18n locales
  */
 import { EN_TRANSLATION } from './locales/en'
-import { JP_TRANSLATION } from './locales/jp'
+import { JA_TRANSLATION } from './locales/ja'
 
 const TRANSLATIONS = {
   EN: EN_TRANSLATION,
-  JP: JP_TRANSLATION
+  JA: JA_TRANSLATION
 }
 
 const i18n = new VueI18n({
