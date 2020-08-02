@@ -17,7 +17,7 @@ This site was developed using JavaScript, Vue.js, and Bootstrap-vue; it was also
 yarn install
 ```
 
-### Sever a local instance of the web application (hot-reload)
+### Serve a local instance of the web application (hot-reload)
 
 ``` bash
 yarn serve
@@ -47,7 +47,7 @@ yarn build
 ![logo](./src/assets/promo/radar.png)
 
 ---
-> News feed based on location
+> Location based news feed
 ![logo](./src/assets/promo/news.png)
 
 ---
