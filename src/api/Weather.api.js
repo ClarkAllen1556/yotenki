@@ -6,10 +6,10 @@ import { W_KEY } from "../../key.api.json"
 const wAPI = {
   uri: {
     wCurrentData: (postalCode, locale) => {
-      return `http://api.openweathermap.org/data/2.5/weather?zip=${postalCode},jp&units=metric&lang=${locale}&appid=${W_KEY}`
+      return `https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},jp&units=metric&lang=${locale}&appid=${W_KEY}`
     },
     wForecastData: (postalCode, locale) => {
-      return `http://api.openweathermap.org/data/2.5/forecast?zip=${postalCode},jp&units=metric&lang=${locale}&appid=${W_KEY}`
+      return `https://api.openweathermap.org/data/2.5/forecast?zip=${postalCode},jp&units=metric&lang=${locale}&appid=${W_KEY}`
     }
   },
   fetchCurrentWeatherData: function (postalCode, locale) {
