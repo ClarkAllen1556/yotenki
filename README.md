@@ -1,4 +1,7 @@
+
 # Yo' Tenki
+
+![logo](./src/assets/logo.png)
 
 [![Build Status](https://travis-ci.org/ClarkAllen1556/yotenki.svg?branch=master)](https://travis-ci.org/ClarkAllen1556/yotenki)
 
@@ -25,3 +28,24 @@ yarn serve
 ``` bash
 yarn build
 ```
+
+## Screenshots
+
+> Home screen
+![logo](./src/assets/promo/empty.png)
+
+---
+> Weather forecast
+![logo](./src/assets/promo/searched.png)
+
+---
+> Bilingual support (Japanese, English)
+![logo](./src/assets/promo/ja_support.png)
+
+---
+> Working radar map
+![logo](./src/assets/promo/radar.png)
+
+---
+> Accessibility
+![logo](./src/assets/promo/tooltip.png)
