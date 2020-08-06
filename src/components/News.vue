@@ -10,7 +10,7 @@
           <div style="padding: 1em;">
             <h4>{{ $t('labels.newsContainerBlank')}}</h4>
             <div style="font-size: 4rem;">
-              <b-icon-newspaper class="border rounded p-2" rotate="45" />
+              <b-icon-newspaper class="rounded p-2" rotate="45" />
             </div>
           </div>
         </template>

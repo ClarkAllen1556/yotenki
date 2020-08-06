@@ -7,6 +7,8 @@ export const EN_TRANSLATION = {
     searchDescription: "Try searching for a postal code!",
     about: "About",
     aboutToolTip: "About this page",
+    forecastCount: "Days worth of forecast data...",
+    forecastContainerBlank: "See your forecast data here.",
     homeIcon: "Home"
   },
   forms: {

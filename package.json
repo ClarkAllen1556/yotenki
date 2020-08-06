@@ -23,6 +23,7 @@
     "moment": "^2.27.0",
     "newsapi": "^2.4.1",
     "vue": "^2.6.11",
+    "vue-d3-charts": "^0.2.8",
     "vue-i18n": "^8.20.0",
     "vue-router": "^3.2.0",
     "vue2-leaflet": "^2.5.2",
