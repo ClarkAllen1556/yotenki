@@ -7,6 +7,8 @@ export const JA_TRANSLATION = {
     searchDescription: "郵便番号で天気予報を検索してみて下さい！",
     about: "情報",
     aboutToolTip: "このウェブサイトとは",
+    forecastCount: "日間のデータを見つけられました…",
+    forecastContainerBlank: "天気予報のデータはここに発表させられています。",
     homeIcon: "ホーム"
   },
   forms: {
