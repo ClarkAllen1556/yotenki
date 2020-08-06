@@ -19,8 +19,8 @@
           </b-card>
 
           <b-card class="content-card overflow-auto">
-            <!-- <News :articleList="updateArts" /> -->
-            <ForecastGraph :forecastDataList="updateForecastData" />
+            <News :articleList="updateArts" />
+            <!-- <ForecastGraph :forecastDataList="updateForecastData" /> -->
           </b-card>
         </b-card-group>
       </b-col>
@@ -30,7 +30,7 @@
 
 <script>
   import WMap from "@/components/WMap.vue";
-  // import News from "@/components/News.vue";
+  import News from "@/components/News.vue";
   import Forecast from "@/components/Forecast.vue";
   import ForecastGraph from "@/components/ForecastGraph.vue";
   import LocationInfo from "@/components/LocationInfo.vue";
@@ -39,10 +39,10 @@
     name: "Home",
     components: {
       WMap,
-      // News,
+      News,
       Forecast,
       LocationInfo,
-      ForecastGraph
+      // ForecastGraph
     },
     methods: {
     },
