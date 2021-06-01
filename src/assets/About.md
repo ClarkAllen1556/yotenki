@@ -43,7 +43,5 @@ This project's git repository is public and can be found [here](https://github.c
 
 This project is small and doesn't have many branches, but anytime a commit is pushed to the remote master a build is triggered on Travis. Once the build is completed it is deployed to the static hosting site [Surge.sh](yotenki.surge.sh).
 
-If you have any questions, please feel free to contact me via my website, [theallenc.com](http://www.theallenc.com). Thank you!
-
 ## Links
 [Linkedin](https://www.linkedin.com/in/allenclark1556/) - [Github](https://github.com/ClarkAllen1556)
