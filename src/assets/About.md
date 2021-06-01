@@ -46,5 +46,4 @@ This project is small and doesn't have many branches, but anytime a commit is pu
 If you have any questions, please feel free to contact me via my website, [theallenc.com](http://www.theallenc.com). Thank you!
 
 ## Links
-
-[Personal](http://www.theallenc.com) - [Linkedin](https://www.linkedin.com/in/allenclark1556/) - [Github](https://github.com/ClarkAllen1556)
+[Linkedin](https://www.linkedin.com/in/allenclark1556/) - [Github](https://github.com/ClarkAllen1556)
