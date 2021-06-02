@@ -4,13 +4,18 @@ node_js:
 
 cache: npm
 
-script: npm run build
+node_js:
+  - 14
+
+script: yarn
 
 deploy:
   provider: surge
   login: allenclark@u.boisestate.edu
+  token: $SURGE_TOKEN
   project: ./dist
   domain: yotenki.surge.sh
+  cleanup: false
   on:
     branch: master
   edge: true # opt in to dpl v2
