@@ -2,7 +2,7 @@
   <div class="home">
     <b-row>
       <b-col id="loc-el" fluid>
-        {{ $t('labels.weatherForecast') }}
+        {{ $t("labels.weatherForecast") }}
         <LocationInfo :locationData="updateLocationData" />
       </b-col>
     </b-row>
@@ -15,12 +15,12 @@
       <b-col fluid>
         <b-card-group deck>
           <b-card class="content-card">
-            <WMap :coords="updateCoords" />
+            <!-- <WMap :coords="updateCoords" /> -->
           </b-card>
 
           <b-card class="content-card overflow-auto">
-            <News :articleList="updateArts" />
-            <!-- <ForecastGraph :forecastDataList="updateForecastData" /> -->
+            <!-- <News :articleList="updateArts" /> -->
+            <ForecastGraph :forecastDataList="updateForecastData" />
           </b-card>
         </b-card-group>
       </b-col>
@@ -30,7 +30,7 @@
 
 <script>
   import WMap from "@/components/WMap.vue";
-  import News from "@/components/News.vue";
+  // import News from "@/components/News.vue";
   import Forecast from "@/components/Forecast.vue";
   import ForecastGraph from "@/components/ForecastGraph.vue";
   import LocationInfo from "@/components/LocationInfo.vue";
@@ -39,13 +39,12 @@
     name: "Home",
     components: {
       WMap,
-      News,
+      // News,
       Forecast,
       LocationInfo,
-      // ForecastGraph
+      ForecastGraph,
     },
-    methods: {
-    },
+    methods: {},
     computed: {
       updateLocationData: function () {
         return this.$store.getters.getLocationData;
@@ -58,7 +57,7 @@
       },
       updateForecastData: function () {
         return this.$store.getters.getForecastData;
-      }
+      },
     },
   };
 </script>

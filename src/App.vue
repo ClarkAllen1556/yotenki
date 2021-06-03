@@ -10,7 +10,7 @@
         />
       </b-col>
     </b-row>
-    <b-row style="padding: 1em;">
+    <b-row style="padding: 1em">
       <b-col>
         <router-view />
       </b-col>
@@ -26,22 +26,27 @@
     components: {
       Navbar,
     },
+    mounted() {
+      if (localStorage.getItem("locale")) {
+        this.changeLocale(localStorage.getItem("locale"));
+      }
+    },
     methods: {
       storeUserQuery: function (params) {
         this.$store.dispatch("updateMetaData", params);
       },
       changeLocale: function (params) {
         this.$store.dispatch("updateLocale", params);
-        this.$i18n.locale = params
-      }
+        this.$i18n.locale = params;
+      },
     },
     computed: {
       getCurrentLocale: function () {
-        return this.$store.getters.getCurrentLocale
+        return this.$store.getters.getCurrentLocale;
       },
       getLocales: function () {
-        return this.$store.getters.getLocales
-      }
-    }
+        return this.$store.getters.getLocales;
+      },
+    },
   };
 </script>
