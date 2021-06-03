@@ -15,7 +15,7 @@
       <b-col fluid>
         <b-card-group deck>
           <b-card class="content-card">
-            <!-- <WMap :coords="updateCoords" /> -->
+            <WMap :coords="updateCoords" />
           </b-card>
 
           <b-card class="content-card overflow-auto">
