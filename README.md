@@ -7,7 +7,7 @@
 
 Web development programming assessment.
 
-This site is currently being hosted via Digital Ocean at [yotenki.urbanlife.me](https://yotenki.urbanlife.me/?#).
+This site is currently being hosted via Digital Ocean at [tenki.urbanlife.me](https://tenki.urbanlife.me/?#).
 
 This site was developed using JavaScript, Vue.js, and Bootstrap-vue; it was also initialized using the Vue CLI If you wish to run the project your self, please follow the instructions below.
 
