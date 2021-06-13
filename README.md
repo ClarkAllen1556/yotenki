@@ -7,7 +7,7 @@
 
 Web development programming assessment.
 
-This site is currently being hosted on Surge.sh at [yotenki.surge.sh](https://yotenki.surge.sh/?#). It is being deployed by Travis CI and the build status can be seen above.
+This site is currently being hosted via Digital Ocean at [yotenki.urbanlife.me](https://yotenki.urbanlife.me/?#). Also, it is being deployed by Travis CI and deployed to [yotenki.surge.sh](https://yotenki.surge.sh).
 
 This site was developed using JavaScript, Vue.js, and Bootstrap-vue; it was also initialized using the Vue CLI If you wish to run the project your self, please follow the instructions below.
 
