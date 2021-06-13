@@ -13,7 +13,7 @@
 
       <b-navbar-nav>
         <b-nav-form>
-          <b-input-group :prepend="$t('forms.postalCodeLabel')">
+          <b-input-group>
             <b-form-input
               v-model="postalCode"
               id="postal-input"
@@ -25,7 +25,7 @@
               <b-button
                 variant="primary"
                 type="submit"
-                @click="emitSearchButton"
+                @click.prevent="emitSearchButton"
                 v-b-tooltip.hover
                 :title="$t('forms.searchButtonToolTip')"
               >
@@ -41,12 +41,20 @@
             v-for="(lang, i) in locales"
             :key="`Lang${i}`"
             @click="$emit(`CHANGE_LOCALE`, lang)"
-          >{{ lang }}</b-dropdown-item-button>
+            >{{ lang }}</b-dropdown-item-button
+          >
         </b-nav-dropdown>
 
-        <b-nav-item href="#/about" v-b-tooltip.hover :title="$t('labels.aboutToolTip')"> {{ $t('labels.about') }} </b-nav-item>
-        <b-nav-item href="#/"> <b-icon-house-fill v-b-tooltip.hover :title="$t('labels.homeIcon')" /> </b-nav-item>
-
+        <b-nav-item
+          href="#/about"
+          v-b-tooltip.hover
+          :title="$t('labels.aboutToolTip')"
+        >
+          {{ $t("labels.about") }}
+        </b-nav-item>
+        <b-nav-item href="#/">
+          <b-icon-house-fill v-b-tooltip.hover :title="$t('labels.homeIcon')" />
+        </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -73,7 +81,8 @@
             throw new Error(`Postal code is invalid: ${this.postalCode}`);
 
           if (!this.postalCode.includes("-"))
-            this.postalCode = this.postalCode.slice(0, 3) + "-" + this.postalCode.slice(3, 7);
+            this.postalCode =
+              this.postalCode.slice(0, 3) + "-" + this.postalCode.slice(3, 7);
 
           this.$emit("EMIT_SEARCH", this.postalCode);
         } catch (e) {
