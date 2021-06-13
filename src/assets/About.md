@@ -41,7 +41,7 @@ APIs that this site interacts with :
 
 This project's git repository is public and can be found [here](https://github.com/ClarkAllen1556/yotenki). It also has a CI build cycle that is being handled by [Travis CI](https://travis-ci.org/github/ClarkAllen1556/yotenki).
 
-This project is small and doesn't have many branches, but anytime a commit is pushed to the remote master a build is triggered on Travis. Once the build is completed it is deployed to the static hosting site [Surge.sh](yotenki.surge.sh).
+This project is small and is being hosted on a private Ubuntu VM hosted on Digital Ocean using Nginx. The domain, [urbanlife.me](https://urbanlife.me), is my personal domain that I own. Most of my other projects are being hosted here as well.
 
 ## Links
 [Linkedin](https://www.linkedin.com/in/allenclark1556/) - [Github](https://github.com/ClarkAllen1556)
